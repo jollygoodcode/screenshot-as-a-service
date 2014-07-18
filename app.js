@@ -24,19 +24,17 @@ process.on('SIGINT', function () {
   process.exit(0);
 });
 
-
 // Web Service
 var app = express();
-app.configure(function(){
-  app.use(express.static(__dirname + '/public'))
-  app.use(app.router);
-  app.set('rasterizerService', new RasterizerService(config.rasterizer).startService());
-  app.set('fileCleanerService', new FileCleanerService(config.cache.lifetime));
-});
 
-app.configure('development', function() {
+app.use(express.static(__dirname + '/public'))
+app.use(app.router);
+app.set('rasterizerService', new RasterizerService(config.rasterizer).startService());
+app.set('fileCleanerService', new FileCleanerService(config.cache.lifetime));
+
+if ('development' == app.get('env')) {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
+}
 
 require('./routes')(app, config.server.useCors);
 app.listen(config.server.port);

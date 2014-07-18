@@ -132,32 +132,26 @@ setInterval(poller, 60000);
 
 Every minute, this script will refresh the two screenshots `google.png` and `yahoo.png`.
 
-## TODO
+## Heroku Deployment
+### Added by Winston
 
-* Allow to configure phantomjs options through YAML config
-* Implement a simple queuing system forcing the use of asynchronous screenshots when the number of browser processes reaches the limit
+To deploy this to Heroku, do the following:
+
+Allow the use of multiple buildpacks as specified in `.buildpacks`.
+
+    $ heroku create --buildpack=https://github.com/ddollar/heroku-buildpack-multi.git
+
+
+Fix the `$PATH` on Heroku.
+
+    $ heroku config:set PATH=/app/bin:/app/node_modules/bin:/usr/local/bin:/usr/bin:/bin:/app/vendor/phantomjs/bin
+
+Deploy!
+
+    $ git push heroku master
 
 ## License
 
 (The MIT License)
 
-Copyright (c) 2012 François Zaninotto, TJ Holowaychuk &lt;tj@vision-media.ca&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Copyright (c) 2012 François Zaninotto, TJ Holowaychuk

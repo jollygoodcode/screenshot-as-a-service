@@ -139,7 +139,7 @@ To deploy this to Heroku, do the following:
 
 Allow the use of multiple buildpacks as specified in `.buildpacks`.
 
-    $ heroku create --buildpack=https://github.com/ddollar/heroku-buildpack-multi.git
+    $ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-multi.git
 
 
 Fix the `$PATH` on Heroku.
